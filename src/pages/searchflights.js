@@ -36,7 +36,8 @@ export class SearchFlights extends Component {
     }
 
     isSearchEnabled() {
-        return ((this.state.isDestinationValid && this.state.isSourceValid)
+        return ((this.state.isDestinationValid &&
+            this.state.isSourceValid && this.state.isTravelDateValid)
             && (this.state.sourceValue !== this.state.destinationValue));
     }
 
@@ -53,10 +54,10 @@ export class SearchFlights extends Component {
                 }
                 return this.setState({ isDestinationValid: false });
             case 'travelDate':
-                if (value !== '') {
-                    return this.setState({ isTravelDateValid: true, travelDate: value });
+                if (value === null) {
+                    return this.setState({ isTravelDateValid: false });
                 }
-                return this.setState({ isTravelDateValid: false });
+                return this.setState({ isTravelDateValid: true, travelDate: value });
             case 'returnDate':
                 return this.setState({ returnDate: value });
             default:
@@ -90,6 +91,7 @@ export class SearchFlights extends Component {
                         <TravelDatePicker selectedDate={new Date()}
                             handleDateChange={(date) => this.onSelectionChange(date, 'travelDate')} />
                     </div>
+                    {this.state.isTravelDateValid ? null : <label htmlFor="usr" style={{ marginRight: 5, color: 'red' }}>Travel Date Required</label>}
                     <div style={{ marginTop: 10 }}>
                         <label htmlFor="usr" style={{ marginRight: 5 }}>Return Date</label>
                         <TravelDatePicker selectedDate={''}
