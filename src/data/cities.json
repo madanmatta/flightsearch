@@ -1,0 +1,20 @@
+{
+    "values": [        
+        {
+            "name": "Select City",
+            "value": "0"
+        },
+        {
+            "name": "Bangalore",
+            "value": "1"
+        },
+        {
+            "name": "Hyderabad",
+            "value": "2"
+        },
+        {
+            "name": "Delhi",
+            "value": "3"
+        }
+    ]
+}
